@@ -1,0 +1,10 @@
+CREDITS
+=======
+
+* Martijn Faassen (creator)
+
+* Denis Krienbühl (prototype implementation)
+
+* Izhar Firdaus (another prototype implementation)
+
+* Special thanks to CONTACT software.
