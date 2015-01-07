@@ -8,14 +8,12 @@ class ChameleonApp(morepath.App):
 
 @ChameleonApp.setting_section(section='chameleon')
 def get_setting_section():
-    return {
-        'auto_reload': False
-    }
+    return {'auto_reload': False}
 
 
 @ChameleonApp.template_engine(extension='.pt')
 def get_chameleon_render(path, original_render, settings):
-    config = {'auto_reload': settings.chameleon.auto_reload}
+    config = settings.chameleon.__dict__
     template = chameleon.PageTemplateFile(path, **config)
     def render(content, request):
         variables = {'request': request}
