@@ -1,3 +1,4 @@
+import os
 import morepath
 import chameleon
 
@@ -12,9 +13,10 @@ def get_setting_section():
 
 
 @ChameleonApp.template_engine(extension='.pt')
-def get_chameleon_render(path, original_render, settings):
-    config = settings.chameleon.__dict__
-    template = chameleon.PageTemplateFile(path, **config)
+def get_chameleon_render(name, original_render, registry, search_path):
+    config = registry.settings.chameleon.__dict__
+    template = chameleon.PageTemplateFile(os.path.join(search_path, name),
+                                          **config)
     def render(content, request):
         variables = {'request': request}
         variables.update(content)
