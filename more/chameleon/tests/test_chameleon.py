@@ -2,7 +2,7 @@ import morepath
 import more.chameleon
 from webtest import TestApp as Client
 import pytest
-from .fixtures import template
+from .fixtures import template, template_macro
 
 
 def setup_module(module):
@@ -23,3 +23,24 @@ def test_template():
 <p>Hello world!</p>
 </body>
 </html>'''
+
+
+def test_template_macro():
+    config = morepath.setup()
+    config.scan(more.chameleon, ignore=['.tests'])
+    config.scan(template_macro)
+    config.commit()
+    c = Client(template_macro.App())
+
+    response = c.get('/persons/world')
+    assert response.body == b'''\
+<html>
+<head>
+</head>
+<body>
+<div id="content">
+<p>Hello world!</p>
+</div>
+</body>
+</html>
+'''

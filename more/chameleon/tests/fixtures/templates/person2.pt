@@ -1,0 +1,5 @@
+<html tal:define="master load: master.pt" metal:use-macro="master">
+<body>
+<p metal:fill-slot="content">Hello ${name}!</p>
+</body>
+</html>
