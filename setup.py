@@ -22,7 +22,7 @@ setup(name='more.chameleon',
       install_requires=[
         'setuptools',
         'morepath > 0.9',
-        'chameleon >= 2.19'
+        'chameleon >= 2.20'
         ],
       extras_require = dict(
         test=['pytest >= 2.6.0',

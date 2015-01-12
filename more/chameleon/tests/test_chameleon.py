@@ -1,8 +1,8 @@
 import morepath
 import more.chameleon
 from webtest import TestApp as Client
-import pytest
-from .fixtures import template, template_macro, explicit_template
+from .fixtures import (
+    template, template_macro, override_template, override_template_loader)
 
 
 def setup_module(module):
@@ -46,12 +46,12 @@ def test_template_macro():
 '''
 
 
-def test_explicit_template():
+def test_override_template():
     config = morepath.setup()
     config.scan(more.chameleon, ignore=['.tests'])
-    config.scan(explicit_template)
+    config.scan(override_template)
     config.commit()
-    c = Client(explicit_template.App())
+    c = Client(override_template.App())
 
     response = c.get('/persons/world')
     assert response.body == b'''\
@@ -61,7 +61,25 @@ def test_explicit_template():
 </body>
 </html>'''
 
-    response = c.get('/persons/world?two=other')
+    c = Client(override_template.SubApp())
+
+    response = c.get('/persons/world')
+    assert response.body == b'''\
+<html>
+<body>
+<div>Hi world!</div>
+</body>
+</html>'''
+
+
+def test_override_template_loader():
+    config = morepath.setup()
+    config.scan(more.chameleon, ignore=['.tests'])
+    config.scan(override_template_loader)
+    config.commit()
+    c = Client(override_template_loader.App())
+
+    response = c.get('/persons/world')
     assert response.body == b'''\
 <html>
 <head>
@@ -74,4 +92,17 @@ def test_explicit_template():
 </html>
 '''
 
+    c = Client(override_template_loader.SubApp())
 
+    response = c.get('/persons/world')
+    assert response.body == b'''\
+<html>
+<head>
+</head>
+<body>
+<div id="content2">
+<p>Hello world!</p>
+</div>
+</body>
+</html>
+'''

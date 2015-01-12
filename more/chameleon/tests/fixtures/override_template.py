@@ -19,3 +19,12 @@ def get_template_dir():
 @App.html(model=Person, template='person.pt')
 def person_default(self, request):
     return {'name': self.name}
+
+
+class SubApp(App):
+    pass
+
+
+@SubApp.template_directory()
+def get_override_template_dir():
+    return 'templates_override'

@@ -11,6 +11,11 @@ class Person(object):
         self.name = name
 
 
-@App.html(model=Person, template='templates/person2.pt')
+@App.template_directory()
+def get_template_dir():
+    return 'templates'
+
+
+@App.html(model=Person, template='person_macro.pt')
 def person_default(self, request):
     return {'name': self.name}

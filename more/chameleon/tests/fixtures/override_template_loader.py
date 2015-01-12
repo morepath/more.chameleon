@@ -11,13 +11,20 @@ class Person(object):
         self.name = name
 
 
-@App.template_path('templates/person.pt')
-def get_template_path(request):
-    if request.GET.get('two') is not None:
-        return 'templates/person2.pt'
-    return 'templates/person.pt'
+@App.template_directory()
+def get_template_dir():
+    return 'templates'
 
 
-@App.html(model=Person, template='templates/person.pt')
+@App.html(model=Person, template='person_macro.pt')
 def person_default(self, request):
     return {'name': self.name}
+
+
+class SubApp(App):
+    pass
+
+
+@SubApp.template_directory()
+def get_override_template_dir():
+    return 'templates_override'
