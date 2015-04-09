@@ -21,7 +21,7 @@ setup(name='more.chameleon',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'morepath > 0.9',
+        'morepath >= 0.10',
         'chameleon >= 2.20'
         ],
       extras_require = dict(
