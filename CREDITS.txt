@@ -7,4 +7,6 @@ CREDITS
 
 * Izhar Firdaus (another prototype implementation)
 
+* Malthe Borch for Chameleon and helping with the integration.
+
 * Special thanks to CONTACT software.
