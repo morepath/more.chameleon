@@ -1,5 +1,7 @@
 import morepath
 import more.chameleon
+import os
+from more.chameleon.main import is_morepath_template_auto_reload
 from webtest import TestApp as Client
 from .fixtures import (
     template, template_macro, override_template, override_template_loader)
@@ -7,6 +9,32 @@ from .fixtures import (
 
 def setup_module(module):
     morepath.disable_implicit()
+
+
+def test_is_morepath_template_auto_reload():
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = ''
+    assert not is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = 'False'
+    assert not is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = 'FALSE'
+    assert not is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = '0'
+    assert not is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = '1'
+    assert is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = 'on'
+    assert is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = 'yes'
+    assert is_morepath_template_auto_reload()
+
+    os.environ['MOREPATH_TEMPLATE_AUTO_RELOAD'] = 'True'
+    assert is_morepath_template_auto_reload()
 
 
 def test_template():

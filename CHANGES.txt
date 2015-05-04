@@ -4,7 +4,12 @@ CHANGES
 0.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- The ``MOREPATH_TEMPLATE_AUTO_RELOAD`` environment variable may now be used
+  to control the auto reloading behavior of Chameleon.
+
+  See README.rst for details.
+
+  Fixes Issue #1: https://github.com/morepath/more.chameleon/issues/1
 
 
 0.1 (2015-04-09)

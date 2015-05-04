@@ -36,13 +36,26 @@ and then in ``person.pt`` (in the ``templates`` subdirectory)::
   </body>
   </html>
 
-To control Chameleon rendering you can define a ``chameleon`` setting
-section in your app. For instance, here is how you turn on the
-``auto_reload`` functionality::
+During development it can be helpful to have Chameleon reload templates
+automatically after a change. To enable this feature use the
+``MOREPATH_TEMPLATE_AUTO_RELOAD`` environment variable.
+
+You can enable it for your process::
+
+  MOREPATH_TEMPLATE_AUTO_RELOAD=1 python run.py
+
+Or for your shell::
+
+  export MOREPATH_TEMPLATE_AUTO_RELOAD=1
+  python run.py
+
+To further control Chameleon rendering you can define a ``chameleon`` setting
+section in your app. For instance, here is how you turn on Chameleon's
+``debug`` functionality::
 
   @App.setting_section(section='chameleon')
   def get_setting_section():
-      return {'auto_reload': True}
+      return {'debug': True}
 
 For details on Chameleon configuration options, consult the
 configuration keyword arguments in the `Chameleon API reference`_.
