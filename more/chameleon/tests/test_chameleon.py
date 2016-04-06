@@ -38,10 +38,10 @@ def test_is_morepath_template_auto_reload():
 
 
 def test_template():
-    config = morepath.setup()
-    config.scan(more.chameleon, ignore=['.tests'])
-    config.scan(template)
-    config.commit()
+
+    morepath.scan(more.chameleon, ignore=['.tests'])
+    morepath.scan(template)
+    morepath.commit(template.App)
     c = Client(template.App())
 
     response = c.get('/persons/world')
@@ -54,10 +54,10 @@ def test_template():
 
 
 def test_template_macro():
-    config = morepath.setup()
-    config.scan(more.chameleon, ignore=['.tests'])
-    config.scan(template_macro)
-    config.commit()
+
+    morepath.scan(more.chameleon, ignore=['.tests'])
+    morepath.scan(template_macro)
+    morepath.commit(template_macro.App)
     c = Client(template_macro.App())
 
     response = c.get('/persons/world')
@@ -75,10 +75,9 @@ def test_template_macro():
 
 
 def test_override_template():
-    config = morepath.setup()
-    config.scan(more.chameleon, ignore=['.tests'])
-    config.scan(override_template)
-    config.commit()
+    morepath.scan(more.chameleon, ignore=['.tests'])
+    morepath.scan(override_template)
+    morepath.commit(override_template.App, override_template.SubApp)
     c = Client(override_template.App())
 
     response = c.get('/persons/world')
@@ -101,10 +100,12 @@ def test_override_template():
 
 
 def test_override_template_loader():
-    config = morepath.setup()
-    config.scan(more.chameleon, ignore=['.tests'])
-    config.scan(override_template_loader)
-    config.commit()
+    morepath.scan(more.chameleon, ignore=['.tests'])
+    morepath.scan(override_template_loader)
+    morepath.commit(
+        override_template_loader.App,
+        override_template_loader.SubApp
+    )
     c = Client(override_template_loader.App())
 
     response = c.get('/persons/world')
