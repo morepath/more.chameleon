@@ -12,6 +12,8 @@ CHANGES
 
 - Using Python 3.5 for PEP8 and coverage.
 
+- Clean up metadata.
+
 
 0.2 (2016-01-23)
 ================
