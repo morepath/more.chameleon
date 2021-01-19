@@ -6,7 +6,7 @@ long_description = "\n".join(
         open("CHANGES.txt", encoding="utf-8").read(),
     )
 )
-import io
+
 setup(
     name="more.chameleon",
     version="0.3.dev0",
