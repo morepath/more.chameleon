@@ -1,3 +1,17 @@
+.. image:: https://github.com/morepath/more.chameleon/workflows/CI/badge.svg?branch=master
+   :target: https://github.com/morepath/more.chameleon/actions?workflow=CI
+   :alt: CI Status
+
+.. image:: https://coveralls.io/repos/github/morepath/more.chameleon/badge.svg?branch=master
+    :target: https://coveralls.io/github/morepath/more.chameleon?branch=master
+
+.. image:: https://img.shields.io/pypi/v/more.chameleon.svg
+  :target: https://pypi.org/project/more.chameleon/
+
+.. image:: https://img.shields.io/pypi/pyversions/more.chameleon.svg
+  :target: https://pypi.org/project/more.chameleon/
+
+
 more.chameleon: Chameleon template integration for Morepath
 ===========================================================
 
