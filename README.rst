@@ -74,10 +74,10 @@ section in your app. For instance, here is how you turn on Chameleon's
 For details on Chameleon configuration options, consult the
 configuration keyword arguments in the `Chameleon API reference`_.
 
-.. _Morepath: http://morepath.readthedocs.org
+.. _Morepath: https://morepath.readthedocs.io
 
-.. _Chameleon: https://chameleon.readthedocs.org/
+.. _Chameleon: https://chameleon.readthedocs.io/
 
-.. _`Chameleon language reference`: https://chameleon.readthedocs.org/en/latest/reference.html
+.. _`Chameleon language reference`: https://chameleon.readthedocs.io/en/latest/reference.html
 
-.. _`Chameleon API reference`: https://chameleon.readthedocs.org/en/latest/library.html#api-reference
+.. _`Chameleon API reference`: https://chameleon.readthedocs.io/en/latest/library.html#api-reference
