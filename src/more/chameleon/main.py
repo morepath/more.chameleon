@@ -1,6 +1,7 @@
-import morepath
-import chameleon
 import os
+
+import chameleon
+import morepath
 
 
 class ChameleonApp(morepath.App):
@@ -8,7 +9,7 @@ class ChameleonApp(morepath.App):
 
 
 def is_morepath_template_auto_reload():
-    """ Returns True if auto reloading should be enabled. """
+    """Returns True if auto reloading should be enabled."""
     auto_reload = os.environ.get("MOREPATH_TEMPLATE_AUTO_RELOAD", "")
 
     return auto_reload.lower() in {"1", "yes", "true", "on"}

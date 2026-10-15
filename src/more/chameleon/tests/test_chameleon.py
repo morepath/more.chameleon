@@ -1,11 +1,14 @@
 import os
-from more.chameleon.main import is_morepath_template_auto_reload
+
 from webtest import TestApp as Client
+
+from more.chameleon.main import is_morepath_template_auto_reload
+
 from .fixtures import (
-    template,
-    template_macro,
     override_template,
     override_template_loader,
+    template,
+    template_macro,
 )
 
 
