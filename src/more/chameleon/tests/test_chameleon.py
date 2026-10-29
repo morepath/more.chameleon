@@ -9,6 +9,7 @@ from .fixtures import (
     override_template_loader,
     template,
     template_macro,
+    template_settings,
 )
 
 
@@ -72,6 +73,36 @@ def test_template_macro() -> None:
 </body>
 </html>
 """
+    )
+
+
+def test_template_settings() -> None:
+    # without a ``chameleon`` settings section Chameleon uses its defaults
+    c = Client(template_settings.App())
+
+    response = c.get("/persons/world")
+    assert (
+        response.body
+        == b"""\
+<html>
+<body>
+<p active="True">Hello world!</p>
+</body>
+</html>"""
+    )
+
+    # settings from the ``chameleon`` section are passed on to Chameleon
+    c = Client(template_settings.SettingsApp())
+
+    response = c.get("/persons/world")
+    assert (
+        response.body
+        == b"""\
+<html>
+<body>
+<p active="active">Hello world!</p>
+</body>
+</html>"""
     )
 
 
