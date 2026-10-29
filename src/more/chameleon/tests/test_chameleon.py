@@ -12,7 +12,7 @@ from .fixtures import (
 )
 
 
-def test_is_morepath_template_auto_reload():
+def test_is_morepath_template_auto_reload() -> None:
     os.environ["MOREPATH_TEMPLATE_AUTO_RELOAD"] = ""
     assert not is_morepath_template_auto_reload()
 
@@ -38,7 +38,7 @@ def test_is_morepath_template_auto_reload():
     assert is_morepath_template_auto_reload()
 
 
-def test_template():
+def test_template() -> None:
 
     c = Client(template.App())
 
@@ -54,7 +54,7 @@ def test_template():
     )
 
 
-def test_template_macro():
+def test_template_macro() -> None:
 
     c = Client(template_macro.App())
 
@@ -75,7 +75,7 @@ def test_template_macro():
     )
 
 
-def test_override_template():
+def test_override_template() -> None:
     c = Client(override_template.App())
 
     response = c.get("/persons/world")
@@ -103,7 +103,7 @@ def test_override_template():
     )
 
 
-def test_override_template_loader():
+def test_override_template_loader() -> None:
     c = Client(override_template_loader.App())
 
     response = c.get("/persons/world")

@@ -1,4 +1,11 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any
+
 from more.chameleon import ChameleonApp
+
+if TYPE_CHECKING:
+    from morepath import Request
 
 
 class App(ChameleonApp):
@@ -7,17 +14,17 @@ class App(ChameleonApp):
 
 @App.path(path="persons/{name}")
 class Person:
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self.name = name
 
 
 @App.template_directory()
-def get_template_dir():
+def get_template_dir() -> str:
     return "templates"
 
 
 @App.html(model=Person, template="person_macro.pt")
-def person_default(self, request):
+def person_default(self: Person, request: Request[App]) -> dict[str, Any]:
     return {"name": self.name}
 
 
@@ -26,5 +33,5 @@ class SubApp(App):
 
 
 @SubApp.template_directory()
-def get_override_template_dir():
+def get_override_template_dir() -> str:
     return "templates_override"
